@@ -38,8 +38,8 @@ LOG = log.getLogger(__name__)
 
 
 class Primitives(Enum):
-    LIVE_MIGRATE = 'MIGRATE'
-    COLD_MIGRATE = 'MIGRATE'
+    LIVE_MIGRATE = 'LIVE_MIGRATE'
+    COLD_MIGRATE = 'COLD_MIGRATE'
     POWER_STATE = 'POWERSTATE'
     HYPERVISOR_STATE = 'HYPERVISOR_STATE'
     NOP = 'NOP'

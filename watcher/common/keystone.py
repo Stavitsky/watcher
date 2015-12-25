@@ -31,6 +31,17 @@ from watcher.common import exception
 LOG = log.getLogger(__name__)
 CONF = cfg.CONF
 
+watcher_domain_opts = [
+    cfg.StrOpt('project_domain_id',
+               default='default',
+               help='Project domain ID'),
+    cfg.StrOpt('user_domain_id',
+               default='default',
+               help='User domain ID')
+]
+
+CONF.register_opts(watcher_domain_opts, 'keystone_authtoken')
+
 CONF.import_opt('admin_user', 'keystonemiddleware.auth_token',
                 group='keystone_authtoken')
 CONF.import_opt('admin_tenant_name', 'keystonemiddleware.auth_token',
@@ -105,8 +116,8 @@ class KeystoneClient(object):
              'username': CONF.keystone_authtoken.admin_user,
              'password': CONF.keystone_authtoken.admin_password,
              'project_name': CONF.keystone_authtoken.admin_tenant_name,
-             'user_domain_name': "default",
-             'project_domain_name': "default"}
+             'user_domain_id': CONF.keystone_authtoken.user_domain_id,
+             'project_domain_id': CONF.keystone_authtoken.project_domain_id}
         LOG.debug(creds)
         return creds
 

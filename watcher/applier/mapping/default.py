@@ -34,7 +34,7 @@ class DefaultActionMapper(BaseActionMapper):
                            action.src,
                            action.dst)
         elif action.action_type == Primitives.LIVE_MIGRATE.value:
-            return Migrate(action.applies_to, Primitives.COLD_MIGRATE,
+            return Migrate(action.applies_to, Primitives.LIVE_MIGRATE,
                            action.src,
                            action.dst)
         elif action.action_type == Primitives.HYPERVISOR_STATE.value:

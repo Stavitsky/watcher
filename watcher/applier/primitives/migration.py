@@ -54,16 +54,17 @@ class Migrate(BasePrimitive):
                  'username': CONF.keystone_authtoken.admin_user,
                  'password': CONF.keystone_authtoken.admin_password,
                  'project_id': project_id,
-                 'user_domain_name': "default",
-                 'project_domain_name': "default"}
+                 'user_domain_id': CONF.keystone_authtoken.user_domain_id,
+                 'project_domain_id': CONF.keystone_authtoken.project_domain_id
+                 }
             auth2 = v3.Password(auth_url=creds2['auth_url'],
                                 username=creds2['username'],
                                 password=creds2['password'],
                                 project_id=creds2['project_id'],
-                                user_domain_name=creds2[
-                                    'user_domain_name'],
-                                project_domain_name=creds2[
-                                    'project_domain_name'])
+                                user_domain_id=creds2[
+                                    'user_domain_id'],
+                                project_domain_id=creds2[
+                                    'project_domain_id'])
             sess2 = session.Session(auth=auth2)
             wrapper2 = NovaClient(creds2, session=sess2)
 
